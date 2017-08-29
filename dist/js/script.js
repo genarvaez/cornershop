@@ -20274,4 +20274,12 @@ if (Vel) {
   };
 })(jQuery);
 
-alert("hola")
+$(document).ready(function () {
+  // Carousel
+  $('.carousel.carousel-slider').carousel({fullWidth: true});
+  	autoplay()   
+	function autoplay() {
+	    $('.carousel').carousel('next');
+	    setTimeout(autoplay, 4500);
+	}   
+});
