@@ -7,6 +7,7 @@
 	    setTimeout(autoplay, 4500);
 	}  
 $(".button-collapse").sideNav();
+$("#tienda").hide();
 
 
 
@@ -22,38 +23,14 @@ function initMap() {
     });
     var geocoder = new google.maps.Geocoder();
 
-    document.getElementById('btn-continuar').addEventListener('click', function() {
-        geocodeAddress(geocoder, map);
-       
-    
+    document.getElementById('address').addEventListener('keydown', function(event){
+    	if(event.which == 13 || event.keyCode == 13){
+    		geocodeAddress(geocoder, map);
+    	}
     });
-    var i;
-    $('#btn-continuar').click(validarSelect);
+  
 
 
-
-
-function validarSelect(){
-
-        //Se verifica si la opcion del select esta vacia
-        if ($('#selector').val().trim() ==! '') {
-            $('.seccion-modal').show();
-            i = null;
-        } 
-        else if($('#selector').val() == 33) {
-           $('.seccion-modal').hide();
-           i = 0
-        }
-        else if($('#selector').val() == 24) {
-           
-           i = 1
-        }
-        else{
-        	$('.seccion-modal').hide();
-        }
-        console.log($('#selector').val() + "hola")
-        return i
-    }
 
 
 
@@ -92,6 +69,7 @@ function geocodeAddress(geocoder, resultsMap) {
             .done(function(res) {
             	console.log("success");
             	console.log(res);
+            	$("#tienda").show();
             	res.forEach(function(e){
             	var markerIcon = new google.maps.Marker({
             	    position: new google.maps.LatLng(e.closest_branch.lat, e.closest_branch.lng),
@@ -101,11 +79,19 @@ function geocodeAddress(geocoder, resultsMap) {
             	});
             	           	
             	var imagen = document.createElement("img");
+            	var divider = document.createElement("div");
+            	var parrafo = document.createElement("h6");
+            	var text = document.createTextNode(e.closest_branch.next_available_delivery)
+            	parrafo.appendChild(text);
+            	divider.setAttribute("class", "divider");
+
 
             	imagen.setAttribute("src", e.img_url);
             	imagen.setAttribute("class", "responsive-img style-stores")
             	
-            	document.getElementById("tienda").append(imagen)
+            	document.getElementById("tienda").append(imagen);
+            	document.getElementById("tienda").append(parrafo);
+            	document.getElementById("tienda").append(divider)
             	google.maps.event.addListener(markerIcon, 'mouseover', function(){
             		var miElemento = data[0].filter(function(element){
             			if(element.id == e.id){

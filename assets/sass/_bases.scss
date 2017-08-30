@@ -8,26 +8,36 @@
 
 /**************************MAPA ESTILOS*****************************/
 #pruebaMap{
-	
 	.seccion-map{
+		
 		#map{
 			height: 100vh;
 			position: absolute;
 			top: 0;
 			z-index: -100;
 		}
-		.form{
-			background: rgba(255, 255, 255, 0.3);
-			overflow: scroll;
+		#form{
+			background-color: rgba(255, 255, 255, 0.8);
+			border-radius: 10px;
 			padding: 0;
-			height: 100vh;
+			height: 10vh;
 			z-index: 100;
-			
+			display: flex;
+			align-items: center;
+			margin: 15px;
+			box-shadow: 2px 13px 26px -5px rgba(0,0,0,0.75);
+			img{
+				width: 110%;
+			}
+		}	
 			#address{
+				
 				background: black;
+				border-radius: 10px;
 				color: white;
 				margin: 0;
 				padding-left: 10px;
+				margin: 0 10px;
 			}
 			button{
 				width: 100%;
@@ -38,8 +48,28 @@
 				font-size: 1.5em;
 				padding: 10px;
 			}
+	}
+	.row{
+		#tienda{
+			margin-left: 15px;
+			background-color: rgba(255, 255, 255, 0.8);
+			border-radius: 10px;
+			height: 80vh;
+			overflow: scroll;
+			p{
+				color: #585858;
+				margin: 10px 10px 15px 10px;
+				font-weight: bolder;
+				font-size: 1.3em;
+				text-align: left;
+			}
+			img{
+				max-height: 140px;
+		
+			}
 		}
 	}
+	
 }
 
 .fa-plus{
