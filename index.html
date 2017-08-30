@@ -9,74 +9,16 @@
 </head>
 <body id="pruebaMap">
 	<div class="row seccion-map">
-		<div class="col s12 m12 l12 seccion-modal">
-			<div class="container">
-				<div class="row">
-			    	<div class="col xl12 l12 m12 s12">
-			    		<div class="modal center">
-			       			<div class="contenido center">
-			       				<img src="dist/img/logo_cornershop.png" class="responsive-img" id="img-logo">
-			       				<img src="dist/img/cornershop_logo_rojo.png" class="responsive-img" id="img-text">
-			       				<p>Selecciona tu comuna para explorar las <br> tiendas cercanas.</p>
-			       				<div class="selector center" id="selector">
-			    					<select class="browser-default" id="selector">
-			    						<option value="1" id="option-no">----</option>
-			    						<option value="2">Cerrillos</option>
-			      						<option value="3">Cerro Navia</option>
-			      						<option value="4">Conchalí</option>
-			      						<option value="5">El Bosque</option>
-			      						<option value="6">Estación Central</option>
-			      						<option value="7">Huechuraba</option>
-			      						<option value="8">Independencia</option>
-			      						<option value="9">La Cisterna</option>
-			      						<option value="10">La Florida</option>
-			      						<option value="11">La Granja</option>
-			      						<option value="12">La Pintana</option>
-			      						<option value="13">La Reina</option>
-			      						<option value="14">Las Condes</option>
-			      						<option value="15">Lo Barnechea</option>
-			      						<option value="16">Lo Espejo</option>
-			      						<option value="17">Lo Prado</option>
-			      						<option value="18">Macul</option>
-			      						<option value="19">Maipú</option>
-			      						<option value="20">Ñuñoa</option>
-			      						<option value="21">Pedro Aguirre Cerda</option>
-			      						<option value="22">Peñalolen</option>
-			      						<option value="23">Providencia</option>
-			      						<option value="24">Pudahuel</option>
-			      						<option value="25">Puente Alto</option>
-			      						<option value="26">Quilicura</option>
-			      						<option value="27">Quinta Normal</option>
-			      						<option value="28">Recoleta</option>
-			      						<option value="29">Renca</option>
-			      						<option value="30">San Joaquín</option>
-			      						<option value="31">San Miguel</option>
-			      						<option value="32">San Ramón</option>
-			      						<option value="33">Santiago</option>
-			      						<option value="34">Vitacura</option>
-			      					</select>
-			      					<input type="text" placeholder="Ingresa tu dirección" id="address">
-			    				</div>
-			    				<div class="center final">
-			    					<button class="center" id="btn-continuar">Continuar</button>
-			    					<p>Volver</p>
-			    					<p>............</p>
-			  					</div>
-		        			</div>
-		      			</div>
-		    		</div>		
-		  		</div>
-		  	</div>
-		</div>
 		<div id="map" class="col s12 m12 l12"></div>
 		<div id="form" class="col s5 m5 l5">
-			<input type="text" placeholder="Dirección">
-			<button id="buscar">Buscar</button>
-		<div>
-		<div id="tienda" class="col s4 m4 l4"></div>	
+			<input type="text" placeholder="Dirección" id="address">
+			<button id="btn-continuar">Buscar</button>
+		</div>
+
+		<div id="tienda" class="col s4 m4 l4"></div>
+			
 	</div>
 	<script src="dist/js/script.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSrfp5Kwvwu1Z3KCSiadTTfW8ij_ACfs&callback=initMap"></script>
-	
 </body>
 </html>

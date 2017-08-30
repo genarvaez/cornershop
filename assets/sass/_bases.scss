@@ -4,91 +4,12 @@
 	margin:0;
 	box-sizing: border-box;
 }
-.seccion-modal {
-    @include seccion-modal();
-        .modal{
-            @include modal();
-                .contenido {
-
-                    @include contenido();
-        }
-    }
-}
-#cerrar {
-    display: none;
-}
-.btn{
-    width:90%;
-}
-@keyframes modal {
-    100% {
-        visibility: visible;
-        opacity: 1;
-    }
-}
-.sec-modal{
-    position:fixed;
-    top:0;
-}
-#img-logo{
-	width: 45%;
-}
-#img-text{
-	margin-top: -15px;
-}
-.title{
-	margin-right: 50%;
-	h4{
-		color: #F8485E;
-	}
-	p{
-		color: #656464;
-	}
-}
-.selector{
-	width: 100%;
-	padding: 10px;
-	border-color: whitesmoke;
-}
-#option-no{
-	color: #F8485E;
-}
-#btn-continuar{
-	background-color: #F8485E;
-	color: #fff;
-	width: 250px;
-	height: 40px;
-	border-radius: 5px;
-	border-color: #F8485E;
-}
-.final{
-	p{
-		color: #F8485E;
-	}
-}
-
-
-
-
-/*******************INDEX INICIO*******************/
-#index-inicio{
-    .logo-cornershop{
-        margin-top:70px;
-    }
-    .index-inicio-loading{
-        margin-top:-250px;
-    .preloader-wrapper{
-        color:$rojo-interfaz;
-        }
-    }
-}
-/*********************FIN INDEX INICIO***********************/
 
 
 /**************************MAPA ESTILOS*****************************/
 #pruebaMap{
+	
 	.seccion-map{
-		padding: 0;
 		#map{
 			height: 100vh;
 			position: absolute;
@@ -96,12 +17,11 @@
 			z-index: -100;
 		}
 		.form{
-			@include fijo();
-			display: flex;
 			background: rgba(255, 255, 255, 0.3);
 			overflow: scroll;
 			padding: 0;
 			height: 100vh;
+			z-index: 100;
 			
 			#address{
 				background: black;
