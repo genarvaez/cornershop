@@ -11,6 +11,10 @@ gulp.task('script', function(){
     //carpeta dist
     .pipe(gulp.dest('dist/js/'));
 });
+gulp.task('images', function(){
+    gulp.src(['assets/img/*'])
+    .pipe(gulp.dest('dist/img/'));
+});
 //segunda tarea.
 gulp.task('style', function(){
     gulp.src(['node_modules/materialize-css/dist/css/materialize.css', 'assets/sass/main.scss'])
@@ -35,4 +39,4 @@ gulp.task('watch', function() {
 gulp.task('watchjs', function() {
     gulp.watch('assets/js/*.js', ['script']);
 });
-gulp.task('default', ['script', 'style', 'webserver', 'watch', 'watchjs'])
+gulp.task('default', ['script', 'style', 'images', 'webserver', 'watch', 'watchjs'])
