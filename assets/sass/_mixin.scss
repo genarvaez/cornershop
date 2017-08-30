@@ -1,0 +1,24 @@
+@mixin seccion-modal(){
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.8);
+}
+@mixin modal(){
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top:120px;
+    height:70%;
+    width:30%;
+    display: flex;
+    animation: modal 1s 2s forwards;
+    visibility: hidden;
+    opacity: 0;
+    z-index:100;
+}
+@mixin contenido(){
+    margin: 0px auto;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+}
