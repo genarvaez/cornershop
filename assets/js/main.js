@@ -9,6 +9,17 @@
 $(".button-collapse").sideNav();
 $("#tienda").hide();
 
+function storeMarkerIcon(color) {
+    return {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 3,
+        scale: 10,
+   };
+}
+
 
 
 /*************************Geocode******************/
@@ -28,10 +39,11 @@ function initMap() {
     		geocodeAddress(geocoder, map);
     	}
     });
-  
 
 
 
+
+var infowindow;
 
 
 function geocodeAddress(geocoder, resultsMap) {
@@ -56,13 +68,13 @@ function geocodeAddress(geocoder, resultsMap) {
               map: resultsMap,
               position: results[0].geometry.location,
               animation: google.maps.Animation.DROP,
-              icon: iconAddres[0],
+              //icon: iconAddres[0],
             });
             var lat = results[0].geometry.location.lng();
             var lon = results[0].geometry.location.lat();
 
             $.ajax({
-            	url: 'http://cornershopapp.com/api/v1/stores?lat='+lon+'&lng='+lat+'',
+                url: 'http://cornershopapp.com/api/v1/stores?lat='+lon+'&lng='+lat+'',
             	type: 'GET',
             	dataType: 'json',
             })
@@ -76,7 +88,7 @@ function geocodeAddress(geocoder, resultsMap) {
             	    position: new google.maps.LatLng(e.closest_branch.lat, e.closest_branch.lng),
             	    map: resultsMap,
             	    animation: google.maps.Animation.DROP,
-            	   	icon: iconAddres[1],
+            	   	icon: storeMarkerIcon(e.closest_branch.store_brand_color),
             	});
             
             	var imagen = document.createElement("img");
@@ -95,39 +107,44 @@ function geocodeAddress(geocoder, resultsMap) {
             	document.getElementById("tienda").append(parrafo);
             	document.getElementById("tienda").append(divider)
 
-            	
+            	google.maps.event.addListener(markerIcon, 'click', function(){
+                    console.log(infowindow);
+                    if(infowindow !== undefined){
+                        infowindow.close(resultsMap,markerIcon)
+                    }
 
-            	google.maps.event.addListener(markerIcon, 'mouseover', function(){
             		var miElemento = data[0].filter(function(element){
             			if(element.id == e.id){
             				return element
             			}
             		});
 
-
-            		var infowindow = new google.maps.InfoWindow({
-            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img"></div'+ '<br>' +'<p class= "center">'+miElemento[0].closest_branch.next_available_delivery + '</p>'
+            		infowindow = new google.maps.InfoWindow({
+            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img" width="100"></div'+ '<br>'+ '<div class="producto">' + '</div>' +'<p class= "center">'+miElemento[0].closest_branch.next_available_delivery + '</p>'
 
             		});
+
             		infowindow.open(resultsMap,markerIcon)
+
             	
-            	google.maps.event.addListener(markerIcon, 'mouseout', function(){
-            		infowindow.close();
+            	google.maps.event.addListener(resultsMap, 'click', function(){
+                    infowindow.close(resultsMap,markerIcon)
+            		
             	})
             		
        
             	})
+
+                
+                })
+
             	google.maps.event.addListener(markerIcon, 'click', function() {
                 	map.panTo(markerIcon.getPosition()); //centra en el map   
             	});
 
         	})
             
-            	$(".style-stores").click(function(){
-            		console.log($(this))
-            	})
 
-            })
             .fail(function() {
             	console.log("error");
             })
