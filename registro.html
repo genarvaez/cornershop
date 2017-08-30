@@ -8,9 +8,13 @@
 	<link rel="stylesheet" href="dist/css/style.min.css">
 </head>
 <body id="pruebaMap">
-	<div id="map"></div>
-	<input type="text" placeholder="addres" id="address">
-	<button id="buscar">Buscar</button>
+	<div class="row seccion-map">
+		<div id="map" class="col s12 m12 l12"></div>
+		<div class="form col s3 m3 l3" id="tienda-box">
+			<input type="text" placeholder="Dirección" id="address">
+			<button id="buscar">Buscar</button>
+		</div>
+	</div>
 	
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSrfp5Kwvwu1Z3KCSiadTTfW8ij_ACfs&callback=initMap"></script>
 	<script src="dist/js/script.js"></script>

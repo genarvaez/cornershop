@@ -13,8 +13,8 @@
 /*************************Geocode******************/
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
-        center: {lat: -34.397, lng: 150.644},
+        zoom: 12,
+        center: {lat: -33.4488897, lng: -70.6692655},
         mapTypeControl: false,
         zoomControl: true,
         streetViewControl: false,
@@ -24,7 +24,7 @@ function initMap() {
 
     document.getElementById('buscar').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
-        console.log(data[0][0])
+    
     });
 
 
@@ -56,17 +56,41 @@ function geocodeAddress(geocoder, resultsMap) {
             var lon = results[0].geometry.location.lat();
             
             
-
-            data[0].forEach(function(e){
+            var i = 0;
+            data[i].forEach(function(e){
             	var markerIcon = new google.maps.Marker({
             	    position: new google.maps.LatLng(e.closest_branch.lat, e.closest_branch.lng),
             	    map: resultsMap,
             	    animation: google.maps.Animation.DROP,
             	   	icon: iconAddres[1],
             	});
+            	console.log(e)
+            	var imagen = document.createElement("img");
+            	imagen.setAttribute("src", e.img_url);
+            	imagen.setAttribute("class", "responsive-img")
+            	var form = document.getElementById("tienda-box").append(imagen)
+            	google.maps.event.addListener(markerIcon, 'mouseover', function(){
+            		var miElemento = data[i].filter(function(element){
+            			if(element.id == e.id){
+            				return element
+            			}
+            		});
+            		console.log(miElemento)
+            		var infowindow = new google.maps.InfoWindow({
+            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img"><h4>'+miElemento[0].closest_branch.name+'</h4></div'
+            		});
+            		infowindow.open(resultsMap,markerIcon)
+            	
+            	google.maps.event.addListener(markerIcon, 'mouseout', function(){
+            		infowindow.close();
+            	})
+            		
+       
+            	})
             	google.maps.event.addListener(markerIcon, 'click', function() {
                 	map.panTo(markerIcon.getPosition()); //centra en el map   
             	});
+
         	});
             console.log(lat, lon);
 	    } 
