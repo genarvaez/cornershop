@@ -68,8 +68,9 @@ function geocodeAddress(geocoder, resultsMap) {
             })
             .done(function(res) {
             	console.log("success");
-            	console.log(res);
             	$("#tienda").show();
+            	
+            
             	res.forEach(function(e){
             	var markerIcon = new google.maps.Marker({
             	    position: new google.maps.LatLng(e.closest_branch.lat, e.closest_branch.lng),
@@ -77,7 +78,7 @@ function geocodeAddress(geocoder, resultsMap) {
             	    animation: google.maps.Animation.DROP,
             	   	icon: iconAddres[1],
             	});
-            	           	
+            
             	var imagen = document.createElement("img");
             	var divider = document.createElement("div");
             	var parrafo = document.createElement("h6");
@@ -87,11 +88,15 @@ function geocodeAddress(geocoder, resultsMap) {
 
 
             	imagen.setAttribute("src", e.img_url);
-            	imagen.setAttribute("class", "responsive-img style-stores")
+            	imagen.setAttribute("class", "responsive-img style-stores");
+            	imagen.setAttribute("id", "img_tienda");
             	
             	document.getElementById("tienda").append(imagen);
             	document.getElementById("tienda").append(parrafo);
             	document.getElementById("tienda").append(divider)
+
+            	
+
             	google.maps.event.addListener(markerIcon, 'mouseover', function(){
             		var miElemento = data[0].filter(function(element){
             			if(element.id == e.id){
@@ -117,6 +122,11 @@ function geocodeAddress(geocoder, resultsMap) {
             	});
 
         	})
+            
+            	$(".style-stores").click(function(){
+            		console.log($(this))
+            	})
+
             })
             .fail(function() {
             	console.log("error");
