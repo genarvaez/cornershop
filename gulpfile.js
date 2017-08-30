@@ -21,7 +21,7 @@ gulp.task('style', function(){
 });
 //TERCERA TAREA: webserver.
 gulp.task('webserver', function(){
-    gulp.src('../cornershop/')
+    gulp.src('./')
     .pipe(webserver({
         fallback: 'index.html',
         livereload: true,

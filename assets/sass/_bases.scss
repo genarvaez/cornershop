@@ -97,7 +97,7 @@
 		}
 		.form{
 			@include fijo();
-
+			display: flex;
 			background: rgba(255, 255, 255, 0.3);
 			overflow: scroll;
 			padding: 0;

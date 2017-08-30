@@ -26787,14 +26787,17 @@ function initMap() {
 
     document.getElementById('btn-continuar').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
+       
     
     });
     var i;
     $('#btn-continuar').click(validarSelect);
 
 
+
+
 function validarSelect(){
-	
+
         //Se verifica si la opcion del select esta vacia
         if ($('#selector').val().trim() ==! '') {
             $('.seccion-modal').show();
@@ -26844,33 +26847,39 @@ function geocodeAddress(geocoder, resultsMap) {
             var lat = results[0].geometry.location.lng();
             var lon = results[0].geometry.location.lat();
 
-
-            
-            
-            data[0].forEach(function(e){
+            $.ajax({
+            	url: 'http://cornershopapp.com/api/v1/stores?lat='+lon+'&lng='+lat+'',
+            	type: 'GET',
+            	dataType: 'json',
+            })
+            .done(function(res) {
+            	console.log("success");
+            	console.log(res);
+            	res.forEach(function(e){
             	var markerIcon = new google.maps.Marker({
             	    position: new google.maps.LatLng(e.closest_branch.lat, e.closest_branch.lng),
             	    map: resultsMap,
             	    animation: google.maps.Animation.DROP,
             	   	icon: iconAddres[1],
             	});
-            	console.log(e)
-            	var lista = document.createElement("li");
+            	           	
             	var imagen = document.createElement("img");
 
             	imagen.setAttribute("src", e.img_url);
             	imagen.setAttribute("class", "responsive-img style-stores")
-            	lista.append(imagen);
-            	var form = document.getElementById("slide-out").append(lista)
+            	
+            	document.getElementById("tienda").append(imagen)
             	google.maps.event.addListener(markerIcon, 'mouseover', function(){
             		var miElemento = data[0].filter(function(element){
             			if(element.id == e.id){
             				return element
             			}
             		});
-            		console.log(miElemento)
+
+
             		var infowindow = new google.maps.InfoWindow({
-            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img"></div'
+            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img"></div'+ '<br>' +'<p class= "center">'+miElemento[0].closest_branch.next_available_delivery + '</p>'
+
             		});
             		infowindow.open(resultsMap,markerIcon)
             	
@@ -26884,8 +26893,16 @@ function geocodeAddress(geocoder, resultsMap) {
                 	map.panTo(markerIcon.getPosition()); //centra en el map   
             	});
 
-        	});
-            console.log(lat, lon);
+        	})
+            })
+            .fail(function() {
+            	console.log("error");
+            })
+            .always(function() {
+            	console.log("complete");
+            });
+        
+	        console.log(lat, lon);
 	    } 
         else {
             alert('Geocode was not successful for the following reason: ' + status);
