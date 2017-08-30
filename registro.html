@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="dist/css/style.min.css">
+</head>
+<body id="pruebaMap">
+	<div class="row seccion-map">
+		<div id="map" class="col s12 m12 l12"></div>
+		<div class="form col s3 m3 l3" id="tienda-box">
+			<input type="text" placeholder="Dirección" id="address">
+			<button id="buscar">Buscar</button>
+		</div>
+	</div>
+	
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSrfp5Kwvwu1Z3KCSiadTTfW8ij_ACfs&callback=initMap"></script>
+	<script src="dist/js/script.js"></script>
+</body>
+</html>

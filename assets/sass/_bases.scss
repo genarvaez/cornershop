@@ -1,4 +1,5 @@
 *{
+
 	padding:0;
 	margin:0;
 	box-sizing: border-box;
@@ -65,3 +66,64 @@
 		color: #F8485E;
 	}
 }
+
+
+
+
+/*******************INDEX INICIO*******************/
+#index-inicio{
+    .logo-cornershop{
+        margin-top:70px;
+    }
+    .index-inicio-loading{
+        margin-top:-250px;
+    .preloader-wrapper{
+        color:$rojo-interfaz;
+        }
+    }
+}
+/*********************FIN INDEX INICIO***********************/
+
+
+/**************************MAPA ESTILOS*****************************/
+#pruebaMap{
+	.seccion-map{
+		padding: 0;
+		#map{
+			height: 100vh;
+		}
+		.form{
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 100;
+
+			background: rgba(255, 255, 255, 0.3);
+			overflow: scroll;
+			padding: 0;
+			height: 100vh;
+			
+			#address{
+				background: black;
+				color: white;
+				margin: 0;
+				padding-left: 10px;
+			}
+			button{
+				width: 100%;
+				background: #01DFA5;
+				color: white;
+				font-weight: bolder;
+				border: none;
+				font-size: 1.5em;
+				padding: 10px;
+			}
+		}
+	}
+}
+
+#infowindow{
+	width: 100px;
+}
+/**************************FIN MAPA ESTILOS****************************/
+
