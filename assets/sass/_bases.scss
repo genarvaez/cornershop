@@ -96,10 +96,7 @@
 			z-index: -100;
 		}
 		.form{
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 100;
+			@include fijo();
 
 			background: rgba(255, 255, 255, 0.3);
 			overflow: scroll;
@@ -125,8 +122,21 @@
 	}
 }
 
-#infowindow{
-	width: 100px;
+.fa-plus{
+	@include fijo();
+	color:#FA58AC;
+	background: white;
+	border-radius: 100%;
+	padding: 10px 14px;
+	margin: 20px;
+
+}
+.style-stores{
+	-webkit-transition: box-shadow .4s; /* Safari */
+	transition: box-shadow .4s;
+}
+.style-stores:hover{
+	box-shadow: 0px 3px 48px -5px rgba(0,0,0,0.75);
 }
 /**************************FIN MAPA ESTILOS****************************/
 

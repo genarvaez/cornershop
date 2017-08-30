@@ -6,7 +6,7 @@
 	    $('.carousel').carousel('next');
 	    setTimeout(autoplay, 4500);
 	}  
-
+$(".button-collapse").sideNav();
 
 
 
@@ -22,10 +22,36 @@ function initMap() {
     });
     var geocoder = new google.maps.Geocoder();
 
-    document.getElementById('buscar').addEventListener('click', function() {
+    document.getElementById('btn-continuar').addEventListener('click', function() {
         geocodeAddress(geocoder, map);
     
     });
+    var i;
+    $('#btn-continuar').click(validarSelect);
+
+
+function validarSelect(){
+	
+        //Se verifica si la opcion del select esta vacia
+        if ($('#selector').val().trim() ==! '') {
+            $('.seccion-modal').show();
+            i = null;
+        } 
+        else if($('#selector').val() == 33) {
+           $('.seccion-modal').hide();
+           i = 0
+        }
+        else if($('#selector').val() == 24) {
+           
+           i = 1
+        }
+        else{
+        	$('.seccion-modal').hide();
+        }
+        console.log($('#selector').val() + "hola")
+        return i
+    }
+
 
 
 function geocodeAddress(geocoder, resultsMap) {
@@ -54,10 +80,11 @@ function geocodeAddress(geocoder, resultsMap) {
             });
             var lat = results[0].geometry.location.lng();
             var lon = results[0].geometry.location.lat();
+
+
             
             
-            var i = 0;
-            data[i].forEach(function(e){
+            data[0].forEach(function(e){
             	var markerIcon = new google.maps.Marker({
             	    position: new google.maps.LatLng(e.closest_branch.lat, e.closest_branch.lng),
             	    map: resultsMap,
@@ -65,19 +92,22 @@ function geocodeAddress(geocoder, resultsMap) {
             	   	icon: iconAddres[1],
             	});
             	console.log(e)
+            	var lista = document.createElement("li");
             	var imagen = document.createElement("img");
+
             	imagen.setAttribute("src", e.img_url);
-            	imagen.setAttribute("class", "responsive-img")
-            	var form = document.getElementById("tienda-box").append(imagen)
+            	imagen.setAttribute("class", "responsive-img style-stores")
+            	lista.append(imagen);
+            	var form = document.getElementById("slide-out").append(lista)
             	google.maps.event.addListener(markerIcon, 'mouseover', function(){
-            		var miElemento = data[i].filter(function(element){
+            		var miElemento = data[0].filter(function(element){
             			if(element.id == e.id){
             				return element
             			}
             		});
             		console.log(miElemento)
             		var infowindow = new google.maps.InfoWindow({
-            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img"><h4>'+miElemento[0].closest_branch.name+'</h4></div'
+            		    content: '<div id="infoWindow" class="center"><img src='+miElemento[0].img_url+' class="responsive-img"></div'
             		});
             		infowindow.open(resultsMap,markerIcon)
             	

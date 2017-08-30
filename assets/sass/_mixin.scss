@@ -22,3 +22,8 @@
     background: white;
     border-radius: 10px;
 }
+@mixin fijo(){
+    position: fixed;
+    top: 0;
+    z-index: -100;
+}
