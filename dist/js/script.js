@@ -26861,7 +26861,13 @@ function geocodeAddress(geocoder, resultsMap) {
             alert('Geocode was not successful for the following reason: ' + status);
         }
         });
+
     }
 }
 
 
+var plus = document.getElementById("plus");
+plus.addEventListener("click", function(){
+	document.getElementById("tienda-box").style.width = "25%";
+	this.style.left = "203px"
+})

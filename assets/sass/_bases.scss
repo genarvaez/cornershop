@@ -33,11 +33,13 @@
 			top: 0;
 			left: 0;
 			z-index: 100;
-
+			width: 0;
 			background: rgba(255, 255, 255, 0.3);
 			overflow: scroll;
 			padding: 0;
 			height: 100vh;
+			-webkit-transition: width 0.4s; /* Safari */
+			transition: width 0.4s;
 			
 			#address{
 				background: black;
@@ -54,6 +56,17 @@
 				font-size: 1.5em;
 				padding: 10px;
 			}
+		}
+		.plus{
+			position: fixed;
+			top: 0px;
+			left: 0;
+			z-index: 200;
+			font-size: 2em;
+			background: white;
+			width: 43px;
+			-webkit-transition: left 0.4s; /* Safari */
+    		transition: left 0.4s;
 		}
 	}
 }
